@@ -1,0 +1,5 @@
+#Package                         Component           Reason
+firmware-misc-nonfree            non-free-firmware   dmesg
+firmware-amd-graphics            non-free-firmware   modalias
+firmware-misc-nonfree            non-free-firmware   modalias
+amd64-microcode                  non-free-firmware   cpu
