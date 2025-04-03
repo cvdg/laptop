@@ -1,8 +1,11 @@
+# systemd: kwin_wayland[22393]: pw.conf: can't load default config client.conf:
 ---
 - name: Utiities install
   ansible.builtin.apt:
     name:
+      - btop
       - gnucash
+      - pipewire
       - rsync
       - vim-nox
       - zsh
