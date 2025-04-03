@@ -1,78 +1,11 @@
-#
-# See: https://wiki.debian.org/InstallingDebianOn/FrameWork/Laptop13/AMD_7040_Series
-#
 ---
 - name: Install FrameWork 13 AMD 7040 Series
   hosts: localhost
   become: true
 
-  tasks:
-    - name: Install FrameWork firmware manager
-      ansible.builtin.apt:
-        name: fwupd
-        state: latest
-        update_cache: yes
+  roles:
+    - role: protonmail
+      tags: protonmail
 
-    - name: Refresh FrameWork firmware manager
-      ansible.builtin.command: /usr/bin/fwupdmgr refresh --force
-
-    - name: Update FrameWork firmware manager
-      ansible.builtin.command: /usr/bin/fwupdmgr update
-
-    - name: Get AMD GPU firmware
-      ansible.builtin.get_url:
-        url: https://gitlab.com/kernel-firmware/linux-firmware/-/archive/main/linux-firmware-main.zip?path=amdgpu
-        dest: /tmp/amdgpu.zip
-        owner: root
-        group: root
-        mode: "0644"
-
-    - name: Unarchive AMD GPU firmware
-      ansible.builtin.unarchive:
-        src: /tmp/amdgpu.zip
-        dest: /tmp/
-
-    - name: Install AMD GPU firmware for FrameWork 13 AMD 7040 Series
-      ansible.builtin.copy:
-        src: "{{ item }}"
-        dest: /lib/firmware/amdgpu/
-        owner: root
-        group: root
-        mode: "0644"
-      with_fileglob:
-        - /tmp/linux-firmware-main-amdgpu/amdgpu/gc_11_0_1*.bin
-        - /tmp/linux-firmware-main-amdgpu/amdgpu/dcn_3_1_4_dmcub.bin
-        - /tmp/linux-firmware-main-amdgpu/amdgpu/psp_13_0_4*.bin
-        - /tmp/linux-firmware-main-amdgpu/amdgpu/sdma_6_0_1.bin
-        - /tmp/linux-firmware-main-amdgpu/amdgpu/vcn_4_0_2.bin
-      notify: update-initramfs
-
-    - name: Install zram swap
-      ansible.builtin.apt:
-        name:
-          - zram-tools
-          - systemd-zram-generator
-        state: latest
-      notify: reboot
-
-    #
-    # Cleanup
-    #
-    - name: Delete /tmp/linux-firmware-main-amdgpu/
-      ansible.builtin.file:
-        path: /tmp/linux-firmware-main-amdgpu/
-        state: absent
-
-    - name: Delete /tmp/amdgpu.zip
-      ansible.builtin.file:
-        path: /tmp/amdgpu.zip
-        state: absent
-
-
-
-  handlers:
-    - name: update-initramfs
-      ansible.builtin.command: /usr/sbin/update-initramfs -u
-
-    - name: reboot
-      ansible.builtin.reboot:
+    - role: signal
+      tags: signal

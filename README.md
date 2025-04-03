@@ -1,13 +1,13 @@
-# Install FrameWork 13 AMD 7040 Series
+# Install: FrameWork 13 AMD 7040 Series
 
 ```shell
 $ sudo apt install ansible git -y
 ...
 $ git clone https://github.com/cvdg/laptop.git
 ...
-$ cd framework13amd7040/
+$ cd laptop/
 ...
-$ ansible-playbook -K playbooks/install.yml
+$ ansible-playbook -K playbooks/bootstrap.yml
 BECOME password:
 ...
 ```
