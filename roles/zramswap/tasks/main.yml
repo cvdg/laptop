@@ -1,0 +1,6 @@
+---
+- name: zramswap install
+  ansible.builtin.apt:
+    name: systemd-zram-generator
+    state: present
+

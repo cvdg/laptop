@@ -1,0 +1,9 @@
+---
+- name: Utiities install
+  ansible.builtin.apt:
+    name:
+      - gnucash
+      - rsync
+      - vim-nox
+      - zsh
+    state: present

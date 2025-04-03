@@ -1,4 +1,5 @@
 ---
-- name: Install ProtonMail Desktop
+- name: ProtonMail install
   ansible.builtin.apt:
     deb: https://proton.me/download/mail/linux/1.8.0/ProtonMail-desktop-beta.deb
+    state: present

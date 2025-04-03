@@ -9,3 +9,9 @@
 
     - role: signal
       tags: signal
+
+    - role: utilities
+      tags: utilities
+
+    - role: zramswap
+      tags: zramswap
