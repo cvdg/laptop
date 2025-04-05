@@ -1,0 +1,23 @@
+---
+- name: Virtualization install
+  ansible.builtin.apt:
+    name:
+      - qemu-system
+      - libvirt-daemon-system
+      - xfsprogs
+    state: present
+
+- name: Add user to group libvirt
+  ansible.builtin.user:
+    name: "{{ ansible_env.SUDO_USER }}"
+    groups:
+      - libvirt
+      - libvirt-qemu
+    append: true
+
+- name: Virtualization install virt-manager
+  ansible.builtin.apt:
+    name: virt-manager
+    state: present
+    install_recommends: true
+

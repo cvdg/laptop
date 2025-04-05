@@ -4,7 +4,9 @@
   ansible.builtin.apt:
     name:
       - btop
+      - curl
       - gnucash
+      - kcharselect
       - pipewire
       - rsync
       - vim-nox

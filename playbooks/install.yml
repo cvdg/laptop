@@ -13,5 +13,8 @@
     - role: utilities
       tags: utilities
 
+    - role: virtualization
+      tags: virtualization
+
     - role: zramswap
       tags: zramswap
